@@ -1,6 +1,8 @@
 ---
-import Whatsapp from "../components/Whatsapp.astro";
+import Header from "../components/Header.astro";
 import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import NotaPrivacidad from "../components/NotaPrivacidad.astro";
 
 interface Props {
 	title: string;
@@ -17,113 +19,16 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>Page - {title}</title>
 	</head>
-	<body
-		class="box-border bg-gradient-to-bl from-[#0f172a] via-[#1e1a78] to-[#0f172a] relative"
-	>
-		<header
-			class="sticky px-3 top-0 right-0 left-0 bg-gradient-to-b from-[#06b6d4] via-[#2563eb] to-[#6366f1]"
+	<body class="box-border bg-[url('/images/fondo.png')] bg-cover bg-center">
+		<Header />
+
+		<main
+			class="container flex flex-col items-center m-auto bg-gradient-to-r from-[rgba(45,212,191,0.5)] to-[rgba(31,41,55,0.5)]"
 		>
-			<div
-				class="flex flex-col gap-y-7 m-auto py-3 justify-center sm:flex-row sm:items-center"
-			>
-				<div class="max-w-28 m-auto">
-					<img
-						class="h-20 w-20 rounded-4xl m-auto"
-						src="../images/logo.png"
-						alt="l"
-					/>
-				</div>
-				<nav class="flex justify-center items-center h-14 sm:w-2/4">
-					<ul
-						class="flex justify-between text-sm items-center text-cyan-100 gap-x-1 mr-4 hover:text-cyan-50 sm:text-xl lg:w-1/2 sm:gap-x-2"
-					>
-						<li>
-							<a
-								class="no-underline list-none p-2 hover:bg-blue-300 shadow-2xs bg-blue-900 rounded-2xl hover:text-blue-950"
-								href="../">Inicio</a
-							>
-						</li>
-						<li>
-							<a
-								class="no-underline list-none p-2 hover:bg-blue-300 shadow-2xs bg-blue-900 rounded-2xl hover:text-blue-950"
-								href="../#cursos">Cursos</a
-							>
-						</li>
-						<li>
-							<a
-								class="no-underline list-none p-2 hover:bg-blue-300 shadow-2xs bg-blue-900 rounded-2xl hover:text-blue-950"
-								href="../precios.html">Precios</a
-							>
-						</li>
-						<li>
-							<a
-								class="no-underline list-none p-2 hover:bg-blue-300 shadow-2xs bg-blue-900 rounded-2xl hover:text-blue-950"
-								href="https://api.whatsapp.com/send?phone=519xx9xxxx1&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202."
-								><strong>Contacto</strong></a
-							>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-		<main class="container flex flex-col items-center m-auto">
 			<slot />
 		</main>
-		<footer
-			class="grid h-auto gap-y-8 pt-5 sm:gap-y-2 lg:grid-cols-3 lg:h-48 bg-gradient-to-b from-[#06b6d4] via-[#2563eb] to-[#6366f1]"
-		>
-			<div class="flex flex-col items-center">
-				<h2
-					class="text-2xl border-1 p-2 bg-cyan-600 text-yellow-50 rounded-2xl"
-				>
-					Servicio 1
-				</h2>
-				<ul>
-					<li class="list-none my-2 mx-0 text-xl text-amber-50">
-						<a href="">Lorem ipsum dolor sit.</a>
-					</li>
-					<li>
-						<a class="text-xl text-amber-50 no-underline" href=""
-							>Lorem ipsum dolor sit.</a
-						>
-					</li>
-				</ul>
-			</div>
-			<div class="flex flex-col items-center">
-				<h2
-					class="text-2xl border-1 p-2 bg-cyan-600 text-yellow-50 rounded-2xl"
-				>
-					Servicio 3
-				</h2>
-				<ul>
-					<li class="list-none my-2 mx-0 text-xl text-amber-50">
-						<a href="">Lorem ipsum dolor sit.</a>
-					</li>
-					<li>
-						<a class="text-xl text-amber-50 no-underline" href=""
-							>Lorem ipsum dolor sit.</a
-						>
-					</li>
-				</ul>
-			</div>
-			<div class="flex flex-col items-center">
-				<h2
-					class="text-2xl border-1 p-2 bg-cyan-600 text-yellow-50 rounded-2xl"
-				>
-					Servicio 3
-				</h2>
-				<ul>
-					<li class="list-none my-2 mx-0 text-xl text-amber-50">
-						<a href="">Lorem ipsum dolor sit.</a>
-					</li>
-					<li>
-						<a class="text-xl text-amber-50 no-underline" href=""
-							>Lorem ipsum dolor sit.</a
-						>
-					</li>
-				</ul>
-			</div>
-		</footer>
-		<Whatsapp />
+		<Footer />
+		<!-- Nota de privacidad -->
+		<NotaPrivacidad />
 	</body>
 </html>

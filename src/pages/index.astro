@@ -1,13 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
-import Linkandtext from "../components/Linkandtext.astro";
-import Sectionpreguntas from "../components/Sectionpreguntas.astro";
+import Cardproyecto from "../components/Cardproyecto.astro";
+import Expandiblesection from "../components/Expandiblesection.astro";
 
-import card from "../config/card.json";
-import enlaces from "../config/enlaces.json";
-import preguntas from "../config/preguntas.json";
-import Infobutton from "../components/Infobutton.astro";
+import preguntasfrecuentes from "../config/preguntasfrecuentes.json";
+
+import circuit from "../assets/images/circuit.jpeg";
+import elec1 from "../assets/images/elec1.jpg";
+import electro from "../assets/images/electro.jpg";
 ---
 
 <Layout title="Index">
@@ -16,63 +16,25 @@ import Infobutton from "../components/Infobutton.astro";
 		class="my-9 flex justify-between min-h-96 pt-2.5 items-center lg:w-5/6"
 	>
 		<div class="flex flex-col gap-y-10 w-3/4 items-center m-auto">
-			<h1 class="text-4xl ml-3 text-cyan-200 font-serif sm:pl-0">
+			<h1 class="text-4xl ml-3 font-serif sm:pl-0">
 				<span
-					class="bg-gradient-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text"
-					>Pagina WEB</span
-				> de muestra, con HTML<span
-					class="bg-gradient-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text"
-				>
-					y con Javascrip</span
+					class="bg-gradient-to-r from-red-400 via-orange-800 to-blue-600 text-transparent bg-clip-text"
+					>Diseñamos proyectos electrónicos y cicuitos impresos</span
 				>
 			</h1>
 
 			<p class="text-xl text-cyan-50 ml-3 sm:pl-0 lg:text-2xl">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-				illum sed aliquid voluptas voluptatibus. Excepturi aut, iusto,
-				voluptate quis reiciendis cupiditate veniam vero vel explicabo
-				similique labore quaerat, tenetur <span id="cursos"
-					>asperiores.</span
+				Solo envía un mensaje solicitando que tipo de proyecto
+				requieres, y nos pondremos en contacto <span id="cursos">.</span
 				>
 			</p>
-			<Infobutton
-				><svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					class="icon icon-tabler icons-tabler-outline icon-tabler-info-circle"
-					><path stroke="none" d="M0 0h24v24H0z" fill="none"
-					></path><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"
-					></path><path d="M12 9h.01"></path><path d="M11 12h1v4h1"
-					></path></svg
-				>Información</Infobutton
-			>
+
 			<div class="flex text-amber-50">
-				<a class="mx-2" href="">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="40"
-						height="40"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="icon icon-tabler icons-tabler-outline icon-tabler-brand-facebook"
-						><path stroke="none" d="M0 0h24v24H0z" fill="none"
-						></path><path
-							d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"
-						></path></svg
-					>
-				</a>
-				<a class="mx-2" href="">
+				<a
+					class="mx-2"
+					href="mailto:contacto.negocio@gmail.com"
+					title="Enviar correo"
+				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="40"
@@ -86,26 +48,6 @@ import Infobutton from "../components/Infobutton.astro";
 						></path><path
 							d="M19 4c1.08 0 2.027 .57 2.555 1.427l-9.555 6.37l-9.555 -6.37a2.999 2.999 0 0 1 2.354 -1.42l.201 -.007h14z"
 						></path></svg
-					>
-				</a>
-
-				<a class="mx-2" href="">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="40"
-						height="40"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"
-						><path stroke="none" d="M0 0h24v24H0z" fill="none"
-						></path><path
-							d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"
-						></path><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"
-						></path><path d="M16.5 7.5v.01"></path></svg
 					>
 				</a>
 				<a class="mx-2" href="">
@@ -132,7 +74,7 @@ import Infobutton from "../components/Infobutton.astro";
 		<div class="hidden md:block md:w-1/4 h-98 rounded-2xl">
 			<img
 				class="rounded-2xl h-full m-auto w-full object-cover"
-				src="images/grabo.jpg"
+				src="images/munie.jpeg"
 				alt="image"
 			/>
 		</div>
@@ -140,70 +82,37 @@ import Infobutton from "../components/Infobutton.astro";
 
 	<!-- SECCION 2 -->
 	<section class="mt-7 flex flex-col w-5/6 lg:w-full">
-		<div class="text-sm sm:text-xl text-center text-cyan-200 pb-4">
-			<h1>Especialización: Serie de cursos de cursos</h1>
-		</div>
 		<div class="grid xl:w-4/5 sm:grid-cols-3 lg:gap-10 xl:m-auto">
-			{
-				card.map((dato) => {
-					return (
-						<Card
-							image={dato.imagen}
-							title={dato.title}
-							description={dato.description}
-							card={dato.card}
-						/>
-					);
-				})
-			}
+			<Cardproyecto
+				title={"circuit"}
+				description={"aaa"}
+				image={circuit}
+			/>
+			<Cardproyecto title={"elec1"} description={"bbb"} image={elec1} />
+			<Cardproyecto
+				title={"electro"}
+				description={"ccc"}
+				image={electro}
+			/>
 		</div>
 	</section>
 
-	<!-- SECCION 3 -->
-	<section
-		class="flex flex-col items-center py-8 lg:px-2 text-white lg:w-5/6"
-	>
-		<div class="text-center text-2xl mb-7 mt-4 px-2">
-			<h2>
-				Adquiere el <span class="text-amber-600">conocimiento</span> y ventajas
-				de formar parte del <span class="text-amber-600">curso</span>
-			</h2>
-		</div>
+	<!-- SECCION 3 PREGUNTAS-->
 
-		<div
-			class="flex flex-col gap-x-4 px-2 sm:px-2 xl:gap-x-0 md:flex-row justify-around sm:w-full"
-		>
-			{
-				enlaces.map((enlace) => {
-					return (
-						<Linkandtext
-							title={enlace.title}
-							tema={enlace.tema}
-							enlace={enlace.enlace}
-						/>
-					);
-				})
-			}
-		</div>
-	</section>
-
-	<!-- SECCION 4 -->
 	<section
-		class="flex gap-4 p-8 w-5/6 items-center text-white justify-around lg:w-full"
+		class="flex mt-20 mx-auto w-5/6 text-white justify-around lg:w-full"
 	>
-		<div class="hidden xl:block xl:w-2/5 pl-28">
-			<h1 class="text-5xl w-1/2">Preguntas frecuentes</h1>
+		<div class="hidden xl:block xl:w-2/5 pl-28 my-auto">
+			<h1 class="text-4xl w-1/2">Preguntas frecuentes</h1>
 		</div>
-		<div class="flex flex-col w-full xl:w-3/5">
+		<div class="flex flex-col w-full xl:w-3/5 gap-3 mb-3">
 			{
-				preguntas.map((pregunta) => {
-					return (
-						<Sectionpreguntas
-							title={pregunta.title}
-							description={pregunta.description}
-						/>
-					);
-				})
+				preguntasfrecuentes.map((pregunta) => (
+					<Expandiblesection
+						title={pregunta.title}
+						description={pregunta.description}
+					/>
+				))
 			}
 		</div>
 	</section>

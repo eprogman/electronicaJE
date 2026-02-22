@@ -1,0 +1,140 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Servicios">
+    <section class="hero">
+        <img class="w-lg h-96" src="/images/temas.jpg" alt="" />
+        <h1 class="text-2xl p-2">Nuestros Servicios</h1>
+    </section>
+    <section class="services">
+        <article class="service-card">
+            <h2>Diseño Web</h2>
+            <p>
+                Creamos sitios web modernos, rápidos y adaptables a todos los
+                dispositivos.
+            </p>
+            <a href="mailto:contacto.negocio@gmail.com" class="btn"
+                >Solicita información</a
+            >
+        </article>
+
+        <article class="service-card">
+            <h2>Marketing Digital</h2>
+            <p>
+                Estrategias efectivas para aumentar tu visibilidad en redes
+                sociales y buscadores.
+            </p>
+            <a href="mailto:contacto.negocio@gmail.com" class="btn"
+                >Más detalles</a
+            >
+        </article>
+
+        <article class="service-card">
+            <h2>Branding y Diseño Gráfico</h2>
+            <p>
+                Desarrollamos la identidad visual de tu marca: logotipo, colores
+                y estilo profesional.
+            </p>
+            <a href="mailto:contacto.negocio@gmail.com" class="btn"
+                >Contáctanos</a
+            >
+        </article>
+    </section>
+</Layout>
+
+<style>
+    .hero {
+        text-align: center;
+        padding: 4rem 1rem 2rem;
+        background-color: #f4f8fb;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+        color: #222;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        color: #555;
+    }
+
+    .services {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        padding: 3rem 1rem;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .service-card {
+        background: rgba(255, 255, 255, 0.3);
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .service-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-card h2 {
+        color: #0077cc;
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .service-card p {
+        color: #555;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn {
+        display: inline-block;
+        background-color: #0077cc;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .btn:hover {
+        background-color: #005fa3;
+    }
+
+    /* 📱 Móviles (pantallas pequeñas) */
+    @media (max-width: 600px) {
+        .services {
+            grid-template-columns: 1fr; /* una columna */
+            padding: 2rem 1rem;
+            gap: 1.5rem;
+        }
+    }
+
+    /* 💻 Tablets (pantallas medianas) */
+    @media (min-width: 601px) and (max-width: 900px) {
+        .services {
+            grid-template-columns: repeat(2, 1fr); /* dos columnas */
+            padding: 2.5rem 1.5rem;
+        }
+    }
+
+    /* 🖥️ Escritorio grande */
+    @media (min-width: 901px) {
+        .services {
+            grid-template-columns: repeat(3, 1fr); /* tres columnas fijas */
+            padding: 3rem 2rem;
+        }
+    }
+</style>

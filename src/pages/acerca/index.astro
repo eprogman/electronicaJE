@@ -1,0 +1,141 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Acerca de">
+    <section class="about-hero">
+        <img class="w-lg h-96" src="/images/proyectos.jpg" alt="" />
+        <h1 class="text-2xl p-2">Acerca de Nosotros</h1>
+    </section>
+
+    <section class="about-content">
+        <article>
+            <h2>Nuestra Historia</h2>
+            <p>
+                Fundado en 2020, MiNegocio nació con la idea de ayudar a
+                pequeñas y medianas empresas a tener una presencia sólida en
+                internet. Desde entonces, hemos acompañado a decenas de marcas
+                en su transformación digital.
+            </p>
+        </article>
+
+        <article>
+            <h2>Misión</h2>
+            <p>
+                Brindar servicios digitales de calidad que impulsen el
+                crecimiento de nuestros clientes, combinando creatividad,
+                tecnología y estrategia.
+            </p>
+        </article>
+
+        <article>
+            <h2>Visión</h2>
+            <p>
+                Ser un referente en soluciones digitales en Latinoamérica,
+                reconocidos por nuestro compromiso, innovación y cercanía con
+                cada cliente.
+            </p>
+        </article>
+
+        <article>
+            <h2>Valores</h2>
+            <ul>
+                <li>
+                    <strong>Compromiso:</strong> Nos involucramos con cada proyecto
+                    como si fuera propio.
+                </li>
+                <li>
+                    <strong>Transparencia:</strong> Comunicación clara y directa
+                    en todo momento.
+                </li>
+                <li>
+                    <strong>Innovación:</strong> Siempre exploramos nuevas formas
+                    de mejorar y crecer.
+                </li>
+            </ul>
+        </article>
+    </section>
+</Layout>
+
+<style>
+    .about-hero {
+        text-align: center;
+        padding: 4rem 1rem 2rem;
+        background: #f4f8fb;
+    }
+
+    .about-hero h1 {
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+        color: #222;
+    }
+
+    .about-hero p {
+        font-size: 1.1rem;
+        color: #555;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .about-content {
+        max-width: 900px;
+        margin: 3rem auto;
+        padding: 0 1rem;
+        display: grid;
+        gap: 2rem;
+    }
+
+    .about-content h2 {
+        color: #0077cc;
+    }
+
+    .about-content p,
+    .about-content ul {
+        color: #555;
+        line-height: 1.6;
+    }
+
+    .team {
+        background-color: #fafafa;
+        padding: 3rem 1rem;
+        text-align: center;
+    }
+
+    .team h2 {
+        color: #0077cc;
+        margin-bottom: 2rem;
+    }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2rem;
+        justify-items: center;
+    }
+
+    .member {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1.5rem;
+        width: 100%;
+        max-width: 260px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .member img {
+        width: 100%;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+    }
+
+    .member h3 {
+        color: #333;
+        margin-bottom: 0.3rem;
+    }
+
+    .member p {
+        color: #666;
+        font-size: 0.95rem;
+    }
+</style>
