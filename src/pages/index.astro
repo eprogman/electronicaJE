@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Cardproyecto from "../components/Cardproyecto.astro";
+import CardServicios from "../components/CardServicios.astro";
 import Expandiblesection from "../components/Expandiblesection.astro";
 
 import preguntasfrecuentes from "../config/preguntasfrecuentes.json";
@@ -16,17 +16,27 @@ import electro from "../assets/images/electro.jpg";
 		class="my-9 flex justify-between min-h-96 pt-2.5 items-center lg:w-5/6"
 	>
 		<div class="flex flex-col gap-y-10 w-3/4 items-center m-auto">
-			<h1 class="text-4xl ml-3 font-serif sm:pl-0">
+			<h1
+				class="text-3xl sm:text-4xl lg:text-5xl ml-3 sm:pl-0 font-semibold tracking-tight text-center"
+			>
 				<span
 					class="bg-gradient-to-r from-red-400 via-orange-800 to-blue-600 text-transparent bg-clip-text"
-					>Diseñamos proyectos electrónicos y cicuitos impresos</span
+					>Proyectos electrónicos</span
 				>
 			</h1>
 
-			<p class="text-xl text-cyan-50 ml-3 sm:pl-0 lg:text-2xl">
-				Solo envía un mensaje solicitando que tipo de proyecto
-				requieres, y nos pondremos en contacto <span id="cursos">.</span
+			<p
+				class="text-base sm:text-lg lg:text-1xl text-rose-950 ml-3 sm:pl-0 text-center max-w-2xl"
+			>
+				Si estas de acuerdo con nuestra
+				<a href="/notaPrivacidad" class="underline text-teal-900"
+					>política de Privacidad</a
 				>
+				y con los
+				<a href="/terminos" class="underline text-teal-900"
+					>términos y condiciones</a
+				>, coméntanos qué tipo de proyecto electrónico requieres
+				enviando un correo electrónico.
 			</p>
 
 			<div class="flex text-amber-50">
@@ -37,8 +47,8 @@ import electro from "../assets/images/electro.jpg";
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						width="40"
-						height="40"
+						width="30"
+						height="30"
 						viewBox="0 0 24 24"
 						fill="currentColor"
 						class="icon icon-tabler icons-tabler-filled icon-tabler-mail"
@@ -53,8 +63,8 @@ import electro from "../assets/images/electro.jpg";
 				<a class="mx-2" href="">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						width="40"
-						height="40"
+						width="30"
+						height="30"
 						viewBox="0 0 24 24"
 						fill="none"
 						stroke="currentColor"
@@ -81,17 +91,26 @@ import electro from "../assets/images/electro.jpg";
 	</section>
 
 	<!-- SECCION 2 -->
-	<section class="mt-7 flex flex-col w-5/6 lg:w-full">
+	<section class="mt-7 mx-auto flex flex-col w-5/6 lg:w-full">
 		<div class="grid xl:w-4/5 sm:grid-cols-3 lg:gap-10 xl:m-auto">
-			<Cardproyecto
-				title={"circuit"}
-				description={"aaa"}
+			<CardServicios
+				title={"Proyectos electrónicos con brazos robóticos"}
+				description={"Se implementan proyectos con brazos robóticos usando microntroladores PIC "}
 				image={circuit}
 			/>
-			<Cardproyecto title={"elec1"} description={"bbb"} image={elec1} />
-			<Cardproyecto
-				title={"electro"}
-				description={"ccc"}
+			<CardServicios
+				title={"Proyectos electrónicos con circuitos analógicos"}
+				description={"Se realiza el diseño e implementación de proyectos con circuitos y componentes analógicos"}
+				image={elec1}
+			/>
+			<CardServicios
+				title={"Venta de componentes electrónicos"}
+				description={"Venta de componentes electrónicos"}
+				image={electro}
+			/>
+			<CardServicios
+				title={"Elaboración de proyectos electrónicos y asesorias"}
+				description={"Elaboración de proyectos electrónicos para trabajos universitarios y asesorías en electrónica analógica y programación de microcontroladores"}
 				image={electro}
 			/>
 		</div>
@@ -99,13 +118,11 @@ import electro from "../assets/images/electro.jpg";
 
 	<!-- SECCION 3 PREGUNTAS-->
 
-	<section
-		class="flex mt-20 mx-auto w-5/6 text-white justify-around lg:w-full"
-	>
+	<section class="flex mt-20 mx-auto w-5/6 justify-around lg:w-full">
 		<div class="hidden xl:block xl:w-2/5 pl-28 my-auto">
-			<h1 class="text-4xl w-1/2">Preguntas frecuentes</h1>
+			<h1 class="text-4xl w-1/2 font-semibold">Preguntas frecuentes</h1>
 		</div>
-		<div class="flex flex-col w-full xl:w-3/5 gap-3 mb-3">
+		<div class="flex flex-col w-full xl:w-3/5 px-3 gap-3 mb-3">
 			{
 				preguntasfrecuentes.map((pregunta) => (
 					<Expandiblesection

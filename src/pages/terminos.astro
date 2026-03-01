@@ -1,0 +1,112 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Términos y Condiciones">
+    <section class="terminos">
+        <div>
+            <strong>Términos y Condiciones</strong>
+
+            <p>
+                El uso de este sitio web implica la aceptación de estos términos
+                y condiciones. El contenido ofrecido es de carácter informativo
+                y puede cambiar sin previo aviso.
+            </p>
+
+            <p class="item">
+                <strong>1.Objeto</strong>
+                <span>
+                    El presente sitio web tiene como finalidad proporcionar
+                    información y permitir el contacto a través del correo
+                    electrónico indicado.
+                </span>
+            </p>
+
+            <p class="item">
+                <strong>2. Uso del sitio web</strong>
+                <span>
+                    El usuario se compromete a hacer un uso adecuado del sitio
+                    web y a no emplearlo para actividades ilícitas, fraudulentas
+                    o que puedan perjudicar a terceros.
+                </span>
+            </p>
+
+            <p class="item">
+                <strong>3.Contacto y disponibilidad</strong>
+                <span>
+                    El envío de un correo electrónico no garantiza la prestación
+                    de ningún servicio ni la aceptación de ninguna solicitud.
+                </span>
+                <span>
+                    Los proyectos y servicios electrónicos se evaluarán de forma
+                    individual y podrán estar sujetos a disponibilidad, tiempos
+                    de desarrollo y costos específicos.
+                </span>
+                <span>
+                    Las respuestas a las consultas estarán sujetas a
+                    disponibilidad y no constituyen obligación contractual
+                    alguna, salvo acuerdo expreso posterior entre las partes.
+                </span>
+                <span>
+                    El titular del sitio se reserva el derecho de no responder
+                    solicitudes que considere improcedentes, incompletas o
+                    contrarias a la ley.
+                </span>
+            </p>
+
+            <p class="item">
+                <strong>4.Responsabilidad</strong>
+                <span>
+                    El titular no se responsabiliza por la falta de
+                    disponibilidad temporal del sitio web, errores técnicos o
+                    daños derivados del uso de la información.
+                </span>
+            </p>
+
+            <p class="item">
+                <strong>5. Modificaciones</strong>
+                El titular se reserva el derecho de modificar en cualquier momento
+                los presentes Términos y Condiciones.
+            </p>
+
+            <p class="item">
+                <strong>6. Legislación aplicable</strong>
+                Estos términos se rigen por la legislación vigente en: <strong
+                    >Perú</strong
+                >
+                <strong>Titular del sitio:</strong> JE Electrónica <br />
+                <strong>Correo de contacto:</strong> correo@correo.com <br />
+                <strong>País:</strong> Perú
+            </p>
+        </div>
+    </section>
+</Layout>
+<style>
+    .terminos {
+        min-height: calc(100vh - 180px);
+        margin: auto;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        padding-top: 30px;
+        padding-left: 30px;
+    }
+
+    .terminos p {
+        text-align: justify;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: column; /* 👈 Esto los pone uno debajo del otro */
+        gap: 8px;
+    }
+
+    .item strong {
+        min-width: 25px;
+        text-align: left;
+    }
+
+    .item span {
+        display: block;
+    }
+</style>

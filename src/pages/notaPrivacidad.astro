@@ -1,0 +1,64 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<!--
+  Descripción: Muestra una nota breve de privacidad para sitios sin formularios ni recolección automática de datos.
+-->
+<Layout title="Nota de Privacidad">
+    <section class="privacidad">
+        <div>
+            <strong>Política de Privacidad:</strong>
+            <p class="item">
+                <span>
+                    Este sitio web no recopila datos personales de forma
+                    automática más allá de los datos técnicos necesarios para su
+                    funcionamiento (como direcciones IP registradas por el
+                    servidor). Si decides contactarnos por correo electrónico,
+                    los datos que proporciones (como tu dirección de correo
+                    electrónico, nombre y el contenido del mensaje) serán
+                    utilizados únicamente para responder a tu consulta. La base
+                    legal para el tratamiento de estos datos es tu
+                    consentimiento al enviarnos el correo electrónico. Los datos
+                    no serán compartidos con terceros, salvo obligación legal.
+                    Conservaremos la información únicamente durante el tiempo
+                    necesario para atender tu solicitud.
+                </span>
+            </p>
+            <p class="item">
+                <span>
+                    Puedes ejercer tus derechos de acceso, rectificación o
+                    supresión contactándonos en:
+                    <a href="mailto:contacto.tunegocio@gmail.com"
+                        >contacto.tunegocio@gmail.com</a
+                    >
+                </span>
+            </p>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .privacidad {
+        min-height: calc(100vh - 180px);
+        margin: auto;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        padding-top: 30px;
+        width: 80%;
+    }
+
+    .privacidad p {
+        text-align: justify;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: column; /* 👈 Esto los pone uno debajo del otro */
+        gap: 8px;
+    }
+
+    .item span {
+        display: block;
+    }
+</style>

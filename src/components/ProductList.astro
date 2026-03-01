@@ -1,0 +1,179 @@
+---
+export interface Producto {
+    id: number;
+    nombre: string;
+    descripcion: string;
+    precio: number;
+    stock: number;
+    imagen: string;
+}
+
+const url = new URL("/api/productos", Astro.request.url);
+const res = await fetch(url);
+const productos = await res.json();
+
+// Paginación: leer parámetro `page` de la URL (server-side)
+const requestUrl = new URL(Astro.request.url);
+const pageParam = parseInt(requestUrl.searchParams.get("page") || "1", 10);
+const page = Number.isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
+const perPage = 9;
+const totalProducts = Array.isArray(productos) ? productos.length : 0;
+const totalPages = Math.max(1, Math.ceil(totalProducts / perPage));
+const start = (page - 1) * perPage;
+const end = start + perPage;
+const pageProductos = Array.isArray(productos)
+    ? productos.slice(start, end)
+    : [];
+const basePath = requestUrl.pathname;
+---
+
+<section class="productos">
+    {totalProducts === 0 && <p>No hay productos disponibles</p>}
+
+    <div class="grid">
+        {
+            pageProductos.map((producto: Producto) => (
+                <div class="card">
+                    <img src={producto.imagen} alt={producto.nombre} />
+                    <h3>{producto.nombre}</h3>
+                    <p class="descripcion">{producto.descripcion}</p>
+                    <p class="precio">S/. {producto.precio}</p>
+                    <p class="stock">
+                        {producto.stock > 0
+                            ? `Stock disponible: ${producto.stock}`
+                            : "Sin stock"}
+                    </p>
+                    <button
+                        disabled={producto.stock <= 0}
+                        class="add-to-cart"
+                        data-id={producto.id}
+                        data-nombre={producto.nombre}
+                        data-precio={producto.precio}
+                    >
+                        Agregar al carrito
+                    </button>
+                </div>
+            ))
+        }
+    </div>
+
+    <!-- Paginación -->
+    {
+        totalPages > 1 && (
+            <nav
+                class="pagination"
+                role="navigation"
+                aria-label="Paginación de productos"
+            >
+                {page > 1 && (
+                    <a
+                        class="page-link prev"
+                        href={`${basePath}?page=${page - 1}`}
+                    >
+                        Anterior
+                    </a>
+                )}
+
+                {Array.from({ length: totalPages }).map((_, i) => {
+                    const p = i + 1;
+                    return (
+                        <a
+                            class={"page-link" + (p === page ? " active" : "")}
+                            href={`${basePath}?page=${p}`}
+                        >
+                            {p}
+                        </a>
+                    );
+                })}
+
+                {page < totalPages && (
+                    <a
+                        class="page-link next"
+                        href={`${basePath}?page=${page + 1}`}
+                    >
+                        Siguiente
+                    </a>
+                )}
+            </nav>
+        )
+    }
+</section>
+
+<style>
+    .productos {
+        padding: 2rem;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1.25rem;
+        padding: 0.5rem;
+    }
+
+    .page-link {
+        display: inline-block;
+        padding: 0.45rem 0.75rem;
+        border-radius: 6px;
+        text-decoration: none;
+        color: #0a6cff;
+        border: 1px solid transparent;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        font-weight: 600;
+    }
+
+    .page-link:hover {
+        transform: translateY(-1px);
+    }
+
+    .page-link.active {
+        background: #0a6cff;
+        color: #fff;
+        border-color: #0a6cff;
+    }
+
+    .page-link.prev,
+    .page-link.next {
+        background: transparent;
+        color: #0a6cff;
+        border: 1px solid rgba(10, 108, 255, 0.12);
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 8px;
+        background: #fff;
+        transition: 0.3s;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+        width: 100%;
+        height: 150px;
+        object-fit: contain;
+    }
+
+    .precio {
+        font-weight: bold;
+        color: #0a6cff;
+    }
+
+    .stock {
+        font-size: 0.9rem;
+        margin: 5px 0;
+    }
+</style>

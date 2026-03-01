@@ -1,12 +1,12 @@
 ---
-import logo from "../assets/images/logo.jpg";
+import logo from "../assets/images/logo.jpeg";
 ---
 
 <header
-    class="sticky top-0 right-0 left-0 bg-gradient-to-r from-[#0f172a] to-[#334155]"
+    class="sticky top-0 right-0 left-0 z-20 bg-gradient-to-r from-slate-900 via-slate-800 to-teal-700/90 shadow-md backdrop-blur-sm"
 >
     <div
-        class="flex flex-wrap items-center justify-center sm:justify-around p-5"
+        class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-6 px-4 py-4"
     >
         <!-- Logo -->
         <a href="/" class="text-white text-xl font-bold mb-3 sm:mb-0">
@@ -18,17 +18,26 @@ import logo from "../assets/images/logo.jpg";
         >
 
         <!-- Links -->
-        <div class="flex flex-wrap space-x-10 contact">
-            <a href="/" class="text-white text-sm sm:text-base md:text-lg"
+        <div class="flex flex-wrap items-center gap-6 contact">
+            <a
+                href="/"
+                class="text-slate-100 text-sm sm:text-base md:text-lg hover:text-teal-200 transition-colors"
                 >Inicio</a
             >
             <a
-                href="/servicios/"
-                class="text-white text-sm sm:text-base md:text-lg">Servicios</a
+                href="/productos"
+                class="text-slate-100 text-sm sm:text-base md:text-lg hover:text-teal-200 transition-colors"
+                >Productos</a
             >
             <a
-                href="/acerca/"
-                class="text-white text-sm sm:text-base md:text-lg">Acerca</a
+                href="/acerca"
+                class="text-slate-100 text-sm sm:text-base md:text-lg hover:text-teal-200 transition-colors"
+                >Acerca</a
+            >
+            <a
+                href="/tienda"
+                class="text-slate-100 text-sm sm:text-base md:text-lg hover:text-teal-200 transition-colors"
+                >Componentes Electrónicos</a
             >
             <a
                 href="mailto:contacto.negocio@gmail.com"
@@ -61,13 +70,13 @@ import logo from "../assets/images/logo.jpg";
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        color: #0077cc;
+        color: #38b2ac; /* turquesa suave */
         font-size: 1rem;
         text-decoration: none;
     }
 
     .email-link:hover {
-        color: #005fa3;
+        color: #2c7a7b; /* turquesa un poco más oscuro */
         text-decoration: underline;
     }
     .icono {

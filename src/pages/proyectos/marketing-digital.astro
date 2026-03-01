@@ -1,0 +1,40 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Proyecto: Marketing Digital">
+	<section class="project-page">
+		<div class="project-content">
+			<section class="mt-6 max-w-4xl mx-auto px-4 py-8 text-slate-100">
+				<h1 class="text-3xl sm:text-4xl font-semibold mb-4">
+					Proyecto de Marketing Digital
+				</h1>
+				<p class="text-base sm:text-lg text-slate-200 mb-4">
+					Describe aquí campañas, estrategias y ejemplos de trabajos de
+					marketing digital que ofreces a tus clientes.
+				</p>
+			</section>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.project-page {
+		min-height: calc(100vh - 180px);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem 1rem;
+	}
+
+	.project-content {
+		max-width: 48rem; /* ~max-w-4xl */
+		width: 100%;
+		padding: 2rem 1rem;
+		color: #e5e7eb; /* text-slate-200 */
+	}
+
+	.project-content p {
+		margin-bottom: 1.5rem;
+	}
+</style>

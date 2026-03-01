@@ -1,0 +1,236 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Acerca de">
+    <section class="about-hero mt-6">
+        <div class="hero-inner">
+            <h1 class="hero-title">Acerca de Nosotros</h1>
+        </div>
+    </section>
+
+    <section class="about-content">
+        <article>
+            <h2>Nuestra Historia</h2>
+            <p>
+                Fundado en 2026, JE Electrónica nace con el propósito de
+                desarrollar soluciones electrónicas innovadoras que respondan a
+                las necesidades reales de empresas, instituciones y
+                emprendedores. Desde nuestros inicios, hemos trabajado en el
+                diseño e implementación de proyectos electrónicos y de robótica,
+                combinando conocimiento técnico, creatividad y compromiso para
+                transformar ideas en soluciones funcionales y eficientes.
+            </p>
+        </article>
+
+        <article>
+            <h2>Misión</h2>
+            <p>
+                Brindar soluciones integrales en proyectos electrónicos y de
+                robótica, integrando tecnología, innovación y estrategia para
+                generar resultados confiables, eficientes y sostenibles.
+            </p>
+        </article>
+
+        <article>
+            <h2>Visión</h2>
+            <p>
+                Ser un referente en el diseño y desarrollo de proyectos
+                electrónicos y de robótica, reconocidos por nuestra calidad
+                técnica, innovación constante y compromiso con cada cliente.
+            </p>
+        </article>
+
+        <article>
+            <h2>Valores</h2>
+            <ul>
+                <li>
+                    <strong>Compromiso:</strong> Nos involucramos en cada proyecto
+                    con responsabilidad y dedicación, asegurando resultados de calidad.
+                </li>
+                <li>
+                    <strong>Transparencia:</strong> Mantenemos una comunicación clara,
+                    honesta y constante en cada etapa del proceso.
+                </li>
+                <li>
+                    <strong>Innovación:</strong> Buscamos continuamente nuevas tecnologías
+                    y metodologías que nos permitan ofrecer soluciones más eficientes
+                    y competitivas.
+                </li>
+                <li>
+                    <strong>Calidad:</strong> Cuidamos cada detalle técnico para garantizar
+                    funcionamiento, seguridad y durabilidad en nuestros proyectos.
+                </li>
+            </ul>
+        </article><br />
+    </section>
+</Layout>
+
+<style>
+    :root {
+        --max-width: 1100px;
+        --muted: #6b7280;
+        --text: #222222;
+        --accent: #0077cc;
+        --bg-overlay: rgba(15, 23, 42, 0.45);
+        font-family:
+            system-ui,
+            -apple-system,
+            "Segoe UI",
+            Roboto,
+            "Helvetica Neue",
+            Arial,
+            sans-serif;
+    }
+
+    .about-hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: clamp(260px, 34vh, 480px);
+        padding: 2rem 1rem;
+        background-image: url("/images/proyectos.jpg");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        color: #fff;
+        overflow: hidden;
+    }
+
+    .about-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.12)
+        );
+        z-index: 1;
+    }
+
+    .hero-inner {
+        position: relative;
+        z-index: 2;
+        max-width: var(--max-width);
+        width: 100%;
+        text-align: center;
+        padding: 0 1rem;
+        box-sizing: border-box;
+    }
+
+    .hero-title {
+        margin: 0;
+        color: var(--accent);
+        font-weight: 700;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        letter-spacing: -0.01em;
+        line-height: 1.01;
+    }
+
+    .about-content {
+        max-width: var(--max-width);
+        margin: 3rem auto;
+        padding: 0 1.25rem;
+        display: grid;
+        gap: 2.25rem;
+        box-sizing: border-box;
+    }
+
+    .about-content article {
+        background: #fff;
+        padding: 1.25rem;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .about-content h2 {
+        color: var(--accent);
+        margin: 0 0 0.5rem 0;
+        font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+    }
+
+    .about-content p,
+    .about-content ul {
+        color: var(--text);
+        line-height: 1.7;
+        font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+        margin: 0;
+    }
+
+    .about-content ul {
+        padding-left: 1.25rem;
+    }
+
+    .team {
+        background-color: #fafafa;
+        padding: 3rem 1rem;
+        text-align: center;
+    }
+
+    .team h2 {
+        color: var(--accent);
+        margin-bottom: 2rem;
+    }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2rem;
+        justify-items: center;
+    }
+
+    .member {
+        background: white;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 1.25rem;
+        width: 100%;
+        max-width: 260px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .member img {
+        width: 100%;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        object-fit: cover;
+    }
+
+    .member h3 {
+        color: #333;
+        margin-bottom: 0.3rem;
+        font-size: 1.05rem;
+    }
+
+    .member p {
+        color: #666;
+        font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+        .about-hero {
+            background-attachment: scroll;
+            padding: 2rem 0;
+            min-height: 260px;
+        }
+        .hero-title {
+            font-size: clamp(1.4rem, 6.5vw, 2rem);
+            padding: 0 1rem;
+        }
+        .about-content {
+            margin: 2rem auto;
+            padding: 0 0.9rem;
+            gap: 1.5rem;
+        }
+        .about-content article {
+            padding: 1rem;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .hero-title {
+            font-size: 3rem;
+        }
+    }
+</style>

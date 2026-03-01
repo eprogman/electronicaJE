@@ -1,0 +1,38 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Proyecto: Branding y Diseño Gráfico">
+	<section class="project-page">
+		<div class="project-content">
+			<h1 class="text-3xl sm:text-4xl font-semibold mb-4">
+				Proyecto de Branding y Diseño Gráfico
+			</h1>
+			<p class="text-base sm:text-lg text-slate-200 mb-4">
+				Usa esta página para explicar tus servicios de identidad visual,
+				logotipos y diseño gráfico profesional.
+			</p>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.project-page {
+		min-height: calc(100vh - 180px);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem 1rem;
+	}
+
+	.project-content {
+		max-width: 48rem; /* ~max-w-4xl */
+		width: 100%;
+		padding: 2rem 1rem;
+		color: #e5e7eb; /* text-slate-200 */
+	}
+
+	.project-content p {
+		margin-bottom: 1.5rem;
+	}
+</style>
