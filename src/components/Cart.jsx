@@ -1,9 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+const SITEKEY = import.meta.env.PUBLIC_HCAPTCHA_SITEKEY;
+const API_URL = import.meta.env.PUBLIC_API_URL;
 
 export default function Cart() {
     const [cart, setCart] = useState([]);
     const [cliente, setCliente] = useState({ nombre: "", email: "" });
     const [mensaje, setMensaje] = useState("");
+    const [captchaToken, setCaptchaToken] = useState(null);
+    const widgetIdRef = useRef(null);
+    const captchaRef = useRef(null);
+
+    // Cargar script de hCaptcha
+    useEffect(() => {
+
+        const script = document.createElement("script");
+        script.src = "https://js.hcaptcha.com/1/api.js";
+        script.async = true;
+        script.defer = true;
+        document.body.appendChild(script);
+
+
+        // Definir función global para callback de hCaptcha
+        window.onCaptchaSuccess = (token) => {
+            console.log("Token generado:", token);
+            setCaptchaToken(token);
+        };
+
+        return () => {
+            // Limpiar funciones globales y script al desmontar
+            document.body.removeChild(script);
+            delete window.onCaptchaSuccess;
+        };
+    }, []);
+
+    // Manejar reseteo del captcha
+    const resetCaptcha = () => {
+        setCaptchaToken(null);
+
+        if (window.hcaptcha && widgetIdRef.current !== null) {
+            window.hcaptcha.reset(widgetIdRef.current);
+        }
+    };
 
     // Guardar carrito en localStorage para persistencia
     useEffect(() => {
@@ -29,6 +66,16 @@ export default function Cart() {
             })
         );
     }, []);
+
+    useEffect(() => {
+        if (!window.hcaptcha || !captchaRef.current) return;
+        else if (cart.length > 0 && window.hcaptcha) {
+            widgetIdRef.current = window.hcaptcha.render(captchaRef.current, {
+                sitekey: import.meta.env.PUBLIC_HCAPTCHA_SITEKEY,
+                callback: window.onCaptchaSuccess,
+            });
+        }
+    }, [cart.length > 0]);
 
     // Agregar producto al carrito
     const agregarProducto = (producto) => {
@@ -62,35 +109,65 @@ export default function Cart() {
 
     // Enviar pedido al backend
     const enviarPedido = async () => {
+        // campos obligatorios
         if (!cliente.nombre || !cliente.email) {
             setMensaje("Completa tu nombre y correo");
+            return;
+        }
+        // validar formato de correo
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(cliente.email)) {
+            setMensaje("Ingresa un correo válido");
             return;
         }
         if (cart.length === 0) {
             setMensaje("El carrito está vacío");
             return;
         }
+        if (!captchaToken) {
+            setMensaje("Debes completar el captcha");
+            return;
+        }
 
         try {
-            const res = await fetch("/api/pedido", {
+            const res = await fetch(`${API_URL}/api/pedido`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ productos: cart, cliente }),
+                body: JSON.stringify({ productos: cart, cliente, captchaToken})
             });
 
             const data = await res.json();
 
-            if (data.success) {
+            // Revisar status o contenido
+            if (!res.ok) {
+                // Error del endpoint (400, 500, etc.)
+                console.error("Error:", data.error);
+                resetCaptcha();   // reset si hay error
+            } else if (data.ok === false) {
+                // Captcha fallido
+                console.error("Captcha inválido:", data.error);
+                alert("Captcha inválido. Intenta de nuevo.");
+            } else if (data.success === true) {
                 setMensaje("Pedido enviado correctamente");
                 setCart([]);
                 setCliente({ nombre: "", email: "" });
+                setCaptchaToken(null);
+                if (window.resetCaptcha) {
+                    window.resetCaptcha();
+                }
                 localStorage.removeItem("cart");
+                resetCaptcha();       // reset también si fue exitoso
             } else {
                 setMensaje(`Error: ${data.error}`);
+                resetCaptcha();
             }
+
+
         } catch (error) {
             setMensaje(`Error de conexión: ${error.message}`);
+            alert("No se pudo contactar al servidor. Intenta más tarde.");
         }
+
     };
 
     return (
@@ -101,8 +178,8 @@ export default function Cart() {
 
             {cart.map((producto) => (
                 <div key={producto.id} className="cart-item">
-                    <p>{producto.nombre}</p>
-                    <p>Precio: $ {producto.precio}</p>
+                    <p className="text-red-600">{producto.nombre}</p>
+                    <p>Precio: S/.{producto.precio}</p>
                     <p>
                         Cantidad:{" "}
                         <input
@@ -122,7 +199,7 @@ export default function Cart() {
 
             {cart.length > 0 && (
                 <>
-                    <h3>Total: $ {total.toFixed(2)}</h3>
+                    <h3>Total: S/. {total.toFixed(2)}</h3>
 
                     <h3>Datos del Cliente</h3>
                     <input
@@ -137,18 +214,27 @@ export default function Cart() {
                         type="email"
                         placeholder="Correo"
                         value={cliente.email}
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                        required
                         onChange={(e) =>
                             setCliente({ ...cliente, email: e.target.value })
                         }
                     />
 
+                    <div
+                        ref={captchaRef}
+                        className="h-captcha"
+                        data-sitekey={SITEKEY}
+                        data-callback="onCaptchaSuccess"
+                    ></div>
+                    <div id="hcaptcha-container"></div>
                     <button onClick={enviarPedido}>Enviar Pedido</button>
                 </>
             )}
 
             {mensaje && <p className="mensaje">{mensaje}</p>}
 
-            <style jsx>{`
+            <style>{`
                 .cart {
                     padding: 1rem;
                     background: #fff;
@@ -160,6 +246,7 @@ export default function Cart() {
                     box-sizing: border-box;
                 }
                 .cart h2 { margin-top: 0; font-size: 1.25rem; }
+                .cart h3{ font-weight: 600; }
 
                 .cart-item {
                     border-bottom: 1px solid #eee;
@@ -167,7 +254,7 @@ export default function Cart() {
                     padding-bottom: 0.75rem;
                 }
 
-                .cart-item p { margin: 0.25rem 0; }
+                .cart-item p { margin: 0.25rem 0.25rem; }
 
                 input[type="number"],
                 input[type="text"],
@@ -198,6 +285,12 @@ export default function Cart() {
                     margin-top: 1rem;
                     font-weight: 600;
                     color: #dc2626;
+                }
+
+                .h-captcha {
+                    margin: 0.75rem 0;
+                    display: flex;
+                    justify-content: center;
                 }
 
                 /* Responsive: full width on small, sticky on wide screens */

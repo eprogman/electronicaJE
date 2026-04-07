@@ -1,14 +1,14 @@
 [
     {
-        "title": "¿Que es un Microcontrolador?",
-        "description": "Un microcontrolador es un circuito integrado programable que contiene en un solo chip los elementos básicos de una pequeña computadora. Se usa para controlar tareas específicas dentro de un sistema electrónico. El microcontrolador integra en un solo chip: CPU (Unidad Central de Procesamiento) que ejecuta instrucciones. Memoria (RAM, ROM o Flash) que guarda datos y programas. Puertos de entrada y salida (I/O) que permiten interactuar con sensores, actuadores y otros dispositivos externos. Interfaces de comunicación (UART, SPI, I2C, etc.)"
+        "title": "¿Qué tipo de proyectos electrónicos realizas?",
+        "description": "Realizamos proyectos electrónicos variados, desde automatización y control hasta prototipos con microcontroladores PIC. También trabajamos en soluciones que se conectan a tu PC mediante Node.js y puerto serial para que tus dispositivos interactúen directamente con software"
     },
     {
-        "title": "¿Cuando tiempo demora la implementación de un proyecto?",
-        "description": "El tiempo de implementación de un proyecto electrónico depende de diversos factores, entre ellos la complejidad del sistema, las etapas de desarrollo involucradas, la disponibilidad de materiales y los requerimientos de diseño y programación. Cada proyecto puede incluir fases como análisis, diseño, desarrollo, pruebas y ajustes, las cuales influyen directamente en el cronograma. Debido a estas variables, el tiempo estimado de finalización puede determinarse con mayor precisión una vez definida las especificaciones técnicas y avanzado el proceso de planificación. En consecuencia, el plazo se establece de manera más exacta conforme se estructura y progresa el proyecto."
+        "title": "¿Necesito conocimientos técnicos para usar los proyectos?",
+        "description": "No es necesario ser experto. Diseñamos las soluciones para que sean fáciles de usar, conectarlas a tu computadora es sencillo y te proporcionamos instrucciones claras para que todo funcione sin problemas."
     },
     {
-        "title": "¿Que es Osciloscopio?",
-        "description": "Un osciloscopio es un instrumento electrónico que permite visualizar en forma de ondas en una pantalla, señales eléctricas que varían en el tiempo. Se usa principalmente para observar cómo cambia un voltaje a lo largo del tiempo. En su pantalla, normalmente el eje horizontal (X) representa el tiempo y el eje vertical (Y) representa la tensión (voltaje). Esto permite analizar la forma de onda de una señal eléctrica, frecuencia, amplitud, detectar fallas o ruidos en circuitos electrónicos."
+        "title": "¿Qué tecnologías utilizas?",
+        "description": "Microcontroladores PIC, Node.js para la comunicación con tu PC, sensores y módulos de comunicación según el proyecto."
     }
 ]

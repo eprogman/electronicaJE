@@ -6,42 +6,51 @@ import Expandiblesection from "../components/Expandiblesection.astro";
 import preguntasfrecuentes from "../config/preguntasfrecuentes.json";
 
 import circuit from "../assets/images/circuit.jpeg";
-import elec1 from "../assets/images/elec1.jpg";
-import electro from "../assets/images/electro.jpg";
+import brazo from "../assets/images/brazo.jpg";
+import io from "../assets/images/io.png";
+import dash from "../assets/images/dash.png";
+import onoff from "../assets/images/onoff.png";
+import alerta from "../assets/images/alerta.png";
+
 ---
 
 <Layout title="Index">
 	<!-- SECCION 1 -->
 	<section
-		class="my-9 flex justify-between min-h-96 pt-2.5 items-center lg:w-5/6"
+		class="relative my-9 min-h-96 flex justify-center mx-auto items-center lg:w-5/6 bg-[url('/images/flyb2.jpeg')] bg-cover bg-center rounded-2xl"
 	>
-		<div class="flex flex-col gap-y-10 w-3/4 items-center m-auto">
-			<h1
+		<div class="absolute inset-0 bg-black/50 rounded-2xl"></div>
+		<div class="flex flex-col gap-y-10 w-3/4 items-center text-white">
+			<span class="bg-black/50 px-3 py-1 rounded-lg backdrop-blur-sm">
+			<h1	
 				class="text-3xl sm:text-4xl lg:text-5xl ml-3 sm:pl-0 font-semibold tracking-tight text-center"
 			>
 				<span
-					class="bg-gradient-to-r from-red-400 via-orange-800 to-blue-600 text-transparent bg-clip-text"
-					>Proyectos electrónicos</span
+					class="bg-gradient-to-r from-red-400 via-orange-500 to-blue-500 text-transparent bg-clip-text"
+					>Ideas que se convierten en electrónica</span
 				>
 			</h1>
-
+			<p class="text-lg text-gray-200 mt-4 ml-3 font-semibold">
+				Proyectos, pruebas y soluciones simples en electrónica.
+			</p>
+			</span>
 			<p
-				class="text-base sm:text-lg lg:text-1xl text-rose-950 ml-3 sm:pl-0 text-center max-w-2xl"
+				class="text-base sm:text-lg lg:text-xl text-white text-center max-w-2xl drop-shadow-md leading-relaxed tracking-tight"
 			>
 				Si estas de acuerdo con nuestra
-				<a href="/notaPrivacidad" class="underline text-teal-900"
+				<a href="/notaPrivacidad" class="underline text-teal-300 hover:text-teal-200 font-semibold"
 					>política de Privacidad</a
 				>
 				y con los
-				<a href="/terminos" class="underline text-teal-900"
+				<a href="/terminos" class="underline text-teal-300 hover:text-teal-200 font-semibold"
 					>términos y condiciones</a
 				>, coméntanos qué tipo de proyecto electrónico requieres
 				enviando un correo electrónico.
 			</p>
 
-			<div class="flex text-amber-50">
+			<div class="flex gap-4">
 				<a
-					class="mx-2"
+					class="p-2 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20 transition"
 					href="mailto:contacto.negocio@gmail.com"
 					title="Enviar correo"
 				>
@@ -50,8 +59,8 @@ import electro from "../assets/images/electro.jpg";
 						width="30"
 						height="30"
 						viewBox="0 0 24 24"
-						fill="currentColor"
-						class="icon icon-tabler icons-tabler-filled icon-tabler-mail"
+						fill="gray"
+						class="icon icon-tabler icons-tabler-filled icon-tabler-mail w-6 h-6 text-white fill-curren"
 						><path stroke="none" d="M0 0h24v24H0z" fill="none"
 						></path><path
 							d="M22 7.535v9.465a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-9.465l9.445 6.297l.116 .066a1 1 0 0 0 .878 0l.116 -.066l9.445 -6.297z"
@@ -60,18 +69,18 @@ import electro from "../assets/images/electro.jpg";
 						></path></svg
 					>
 				</a>
-				<a class="mx-2" href="">
+				<a class="p-2 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20 transition" href="">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="30"
 						height="30"
 						viewBox="0 0 24 24"
 						fill="none"
-						stroke="currentColor"
+						stroke="gray"
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						class="icon icon-tabler icons-tabler-outline icon-tabler-brand-tiktok"
+						class="icon icon-tabler icons-tabler-outline icon-tabler-brand-tiktok w-6 h-6 text-white fill-curren"
 						><path stroke="none" d="M0 0h24v24H0z" fill="none"
 						></path><path
 							d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z"
@@ -81,13 +90,6 @@ import electro from "../assets/images/electro.jpg";
 			</div>
 		</div>
 
-		<div class="hidden md:block md:w-1/4 h-98 rounded-2xl">
-			<img
-				class="rounded-2xl h-full m-auto w-full object-cover"
-				src="images/munie.jpeg"
-				alt="image"
-			/>
-		</div>
 	</section>
 
 	<!-- SECCION 2 -->
@@ -95,23 +97,33 @@ import electro from "../assets/images/electro.jpg";
 		<div class="grid xl:w-4/5 sm:grid-cols-3 lg:gap-10 xl:m-auto">
 			<CardServicios
 				title={"Proyectos electrónicos con brazos robóticos"}
-				description={"Se implementan proyectos con brazos robóticos usando microntroladores PIC "}
-				image={circuit}
+				description={"Implementación de brazos robóticos con microcontroladores PIC, conectados y controlados mediante puerto serial."}
+				image={brazo}
 			/>
 			<CardServicios
 				title={"Proyectos electrónicos con circuitos analógicos"}
-				description={"Se realiza el diseño e implementación de proyectos con circuitos y componentes analógicos"}
-				image={elec1}
+				description={"Diseño e implementación de proyectos con circuitos y componentes analógicos para aplicaciones educativas y experimentales."}
+				image={circuit}
 			/>
 			<CardServicios
-				title={"Venta de componentes electrónicos"}
-				description={"Venta de componentes electrónicos"}
-				image={electro}
+				title={"Proyectos IoT con PIC + Node.js"}
+				description={"Sensores conectados al microcontrolador, datos mostrados en tiempo real en tu website mediante Node.js y Socket.io."}
+				image={io}
 			/>
 			<CardServicios
-				title={"Elaboración de proyectos electrónicos y asesorias"}
-				description={"Elaboración de proyectos electrónicos para trabajos universitarios y asesorías en electrónica analógica y programación de microcontroladores"}
-				image={electro}
+				title={"Control remoto de proyectos electrónicos"}
+				description={"Encender/apagar dispositivos vía Node.js desde la web, utilizando microcontroladores PIC para controlar proyectos electrónicos de forma remota."}
+				image={onoff}
+			/>
+			<CardServicios
+				title={"Alertas y notificaciones en proyectos electrónicos"}
+				description={"Implementación de un sistema de monitoreo con microcontroladores PIC y Node.js, capaz de procesar datos seriales en intervalos cortos, generar alertas en tiempo real cuando se superan umbrales definidos y enviar resúmenes periódicos a tu dispositivo móvil."}
+				image={alerta}
+			/>
+		    <CardServicios
+				title={"Dashboard IoT"}
+				description={"Desarrollo de dashboards web interactivos para IoT, listos para conectarse a cualquier microcontrolador o sistema de backend. Incluyen visualización de datos en tiempo real, control de actuadores y gráficos interactivos, con soporte para integración mediante APIs."}
+				image={dash}
 			/>
 		</div>
 	</section>
@@ -133,4 +145,16 @@ import electro from "../assets/images/electro.jpg";
 			}
 		</div>
 	</section>
+
+	<!-- SECCION 4 PREGUNTAS-->
+	<section id="contacto" class="w-full min-h-screen bg-gradient-to-b from-gray-50 to-gray-200 flex items-center justify-center p-6">
+		<div class="w-full max-w-3xl h-[85vh] bg-white rounded-2xl shadow-2xl overflow-hidden">
+		<iframe 
+			src="http://localhost:4322/"
+			class="w-full h-full border-0">
+		</iframe>
+		</div>
+	</section>
+
+
 </Layout>

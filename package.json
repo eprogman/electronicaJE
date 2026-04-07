@@ -13,8 +13,8 @@
     "@tailwindcss/cli": "^4.0.12",
     "@tailwindcss/vite": "^4.0.12",
     "astro": "^5.4.1",
-    "mysql2": "^3.18.0",
     "nodemailer": "^8.0.1",
+    "pg": "^8.20.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tailwindcss": "^4.0.12"
