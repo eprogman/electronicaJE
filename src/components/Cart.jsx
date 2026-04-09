@@ -174,7 +174,7 @@ export default function Cart() {
         <div className="cart">
             <h2>Carrito de Compras</h2>
 
-            {cart.length === 0 && <p>El carrito está vacío</p>}
+            {cart.length === 0 && <p>Aún no hay productos visibles en esta sección.</p>}
 
             {cart.map((producto) => (
                 <div key={producto.id} className="cart-item">

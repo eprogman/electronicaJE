@@ -5,19 +5,21 @@ import Footer from "../components/Footer.astro";
 
 interface Props {
 	title: string;
+	description ?: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 		<title>Page - {title}</title>
+		<meta name="description" content={description} />
 		<meta name="google-site-verification" content="5CrcPapBeNHz134EIJNEvR7XipTCTL79aeJISCgsgEg" />
 	</head>
 	<body class="box-border font-[Poppins]">
