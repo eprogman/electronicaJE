@@ -1,6 +1,7 @@
+// Para el hcaptcha y enviar pedido al backend en runtime
+
 import React, { useState, useEffect, useRef } from "react";
 const SITEKEY = import.meta.env.PUBLIC_HCAPTCHA_SITEKEY;
-const API_URL = import.meta.env.PUBLIC_API_URL;
 
 export default function Cart() {
     const [cart, setCart] = useState([]);
@@ -107,7 +108,7 @@ export default function Cart() {
         0
     );
 
-    // Enviar pedido al backend
+    // Enviar pedido al backend luego de validar HCAPTCHA
     const enviarPedido = async () => {
         // campos obligatorios
         if (!cliente.nombre || !cliente.email) {
@@ -130,9 +131,11 @@ export default function Cart() {
         }
 
         try {
-            const res = await fetch(`${API_URL}/api/pedido`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
+            const res = await fetch('/api/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: JSON.stringify({ productos: cart, cliente, captchaToken})
             });
 

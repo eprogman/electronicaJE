@@ -1,0 +1,40 @@
+[
+    {
+        "id":1,
+        "tema": "Parpadeo de LED mediante interrupciones y el Timer1 del Curiosity PIC18F57Q43",
+        "descripcion": "Programa del PIC18F57Q43 listo para el encendido y apagado de un LED. Mediante un osciloscopio, cómo la señal cuadrada cambia de estado de alto a bajo. Asimismo, el tiempo en alto y en bajo de la señal cambia cada 260 ms con cada interrupción generada en el PIC.",
+        "especificaciones": "En datasheet indica que el módulo Timer1 es un contador de 16 bits que incrementa y se accede a través del registro TMRx. Cuando se utiliza con una fuente de reloj interna, el módulo funciona como un temporizador que incrementa en cada ciclo de instrucción. El registro TMR1 incrementa hasta FFFFh y se reinicia a 0000h. Cuando TMR1 se reinicia, se establece el bit de la bandera de interrupción de Timer1 del registro PIR3.",
+        "funcionamiento": "Se carga el time1, para una Escritura directa para los cual utiliza : \n TMR1H = 0x00; \n TMR1L = 0x00; \n Para conseguir una interrupción cada 260ms en TIMER1 usando Oscilador interno de 4Mhz.\n T1CLK = 0x01; // Clock = Fosc/4 \n T1CON = 0x23; // Prescaler 1:4, Timer1 ON \n Función interrupción, para encendido y apagado del LED. \n void __interrupt(irq(IRQ_TMR1) TMR1_ISR(void) \n {\n if (PIR3bits.TMR1IF) \n {\n PIR3bits.TMR1IF = 0;   // Limpiar bandera \n LATFbits.LATF3 ^= 1;   // Cambiar estado del LED \n }\n }"
+    },
+    {
+       "id":2,
+        "tema": "Escritura en un display OLED mediante I2C de un valor leído desde la EEPROM del PIC18F4550",
+        "descripcion": "Programación del PIC18F4550 para lectura de un hola mundo y valor leído de memoria EEPROM, con uso del modo I2C del PIC. Muestra texto 'Hola Mundo' en el displey OLED, como tambien el número leído de la memoria no volatil EEPROM del PIC.",
+        "imagen1": "/images/oled.jpeg",
+        "especificaciones": "En datasheet del PIC se indica se utilizan dos pines para la transferencia de datos con I2C: Serial clock (SCL) en pin RB1 y Serial data (SDA) en pin RB0. La EEPROM de datos es una matriz de memoria no volátil, separada de la RAM de datos y de la memoria de programa, que se utiliza para el almacenamiento a largo plazo de datos de programa. Se utilizan cuatro registros SFRs para leer y escribir en la EEPROM de datos, así como en la memoria de programa. Estos son: • EECON1 • EECON2 • EEDATA • EEADR",
+        "funcionamiento": "\nFunción MostrarDatosOLED para mostrar los datos en OLED: \nvoid MostrarDatosOLED(void) {\n//Declaración del buffer(aquí es lo importante) \n char buffer[40];\n SSD1306_Clear(); // Borra framebuffer \n // Líneas para escritura en OLED\n sprintf(buffer, \"Saludo: %s\", dato);  //escritura del hola mundo  \n SSD1306_DrawString(0, 0, buffer);\n sprintf(buffer, \"Dato EEPROM: %u\", valor);   //escritura del valor del EEPROM\n SSD1306_DrawString(0, 2, buffer);\n SSD1306_UpdateScreen(); // Enviar framebuffer al display\n }\n Función principal:\n void main(void) {\n OSCCONbits.IRCF = 0b110;  // 4 MHz\n OSCCONbits.SCS  = 0b10;   // Oscilador interno\n __delay_ms(50);   // estabiliza reloj\n I2C_Init();            // Inicializa I2C (implementa en i2c.c)\n SSD1306_Init();  // Inicializa OLED\n SSD1306_Clear();    // Borra framebuffer\n // Escribir en EEPROM\n escribirEEPROM(0x10, 250);\n // Leer desde EEPROM\n valor = leerEEPROM(0x10);\n MostrarDatosOLED();\n while (1) {\n }\n }\n"
+    },
+    {
+        "id":3,
+        "tema": "Encendido y apagado automatico de un dispositivos de electrónica de consumo mediante PIC16F877A",
+        "descripcion": "Prototipo electrónico para el encendido y apagado automático de un dispositivos de electrónica de consumo, como TV, router, PlayStation, para lo cual se utilizó un PIC16F877A, un módulo Reloj RTC DS1307, un display LCD 16X2 y un teclado matricial 4x4.",
+        "imagen1": "/images/alarma1.jpeg",
+        "imagen2": "/images/alarma2.jpeg",
+        "imagen3": "/images/alarma3.jpeg",
+        "imagen4": "/images/alarma4.jpeg",
+        "especificaciones": "En base al datasheet del PIC16F877A, se utilizan dos pines para la transferencia de datos, serial clock (SCL) en pin RC3 y serial data (SDA) en pin RC4. Con respecto al modo I2C del PIC, los registro SSPCON, SSPCON2 y SSPSTAT son de control y estado en la operación en modo I2C. ",
+        "funcionamiento": "Para la implementación del prototipo electrónico se utilizó: \n Modo I2C del PIC, para escribir al RTC DS1307 en formato BCD. \n Keypad 4x4 para los digitos que iran al LCD. \n LCD para mostrar todos los valores obtenidos con teclado. \n Modulo reloj RTC para lo cual se hace uso del I2C del PIC \n #define DS1307_WRITE 0xD0 // Dirección de fabrica de I2C del DS1307 para escritura \n #define DS1307_READ  0xD1 // Dirección de fabrica de I2C del DS1307 para lectura \n Como tambien el void main(void) donde se realiza inicializaciónes y se ejecuta la función del Keypad para que al iniciar se ingrese hora actual, hora de encendudo y hora de apagado."
+    },    
+    {
+        "id":4,
+        "tema": "Convertidor flyback",
+        "descripcion": "Un flyback (o convertidor flyback) es un tipo de fuente conmutada que usa un transformador para almacenar energía y luego liberarla hacia la salida.",
+        "imagen1": "/images/flyback.png",
+        "imagen2": "/images/salida-proto.jpeg",
+        "imagen3": "/images/salida-osc.jpeg",
+        "especificaciones": "Flyback = convertidor que almacena y luego libera energía. Funciona en dos etapas (ON / OFF). Pico en el osciloscopio es el efecto flyback.",
+        "funcionamiento": "🔁 Cómo funciona (paso a paso) \n 🟢 1. MOSFET encendido (ON) \n El primario del transformador recibe 8 Voltios) \n Circula corriente \n Se almacena energía en el núcleo de ferrita \n El diodo del secundario está apagado \n \n 👉 No hay energía en la salida todavía \n \n 🔴 2. MOSFET apagado (OFF)\n El campo magnético colapsa \n El transformador invierte polaridad \n El secundario se activa \n El diodo conduce \n 👉 La energía almacenada ahora se transfiere a la carga, led enciende."
+    }
+    
+    
+]

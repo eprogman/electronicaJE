@@ -1,0 +1,67 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import datosProyecto from "../../config/data_proyectos.json";
+
+import flyback from "../../assets/images/flyback.png";
+import salidaproto from "../../assets/images/salida-proto.jpeg";
+import salidaosc from "../../assets/images/salida-osc.jpeg";
+
+const resultado = datosProyecto.filter(item => item.id === 4);
+---
+
+<Layout title="Proyecto: 3">  
+            {
+			Array.isArray(resultado) ? (
+                resultado.map((app) => (
+                    <section class="p-8 border-b-[24px] border-gray-200 space-y-6 mb-6 bg-white rounded-xl shadow-lg">
+                        <h2 class="text-2xl lg:text-xl font-bold uppercase tracking-wider text-gray-800 leading-tight">
+                            {app.tema}
+                        </h2>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">                        
+                                <img
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+                                    src={flyback.src}
+                                    alt={app.tema}
+                                />
+                         
+                                <img
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+                                    src={salidaproto.src}
+                                    alt={app.tema}
+                                />
+								<img
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+                                    src={salidaosc.src}
+                                    alt={app.tema}
+                                />
+                        </div>
+
+                        <div class="space-y-4">
+                            <p class="text-gray-700 leading-relaxed font-medium">
+                                <span class="font-bold text-gray-900 text-lg">Descripción: </span>
+                                {app.descripcion}
+                            </p>
+
+                            <p class="text-gray-700 leading-relaxed font-medium">
+                                <span class="font-bold text-gray-900 text-lg">Especificaciones: </span>
+                                {app.especificaciones}
+                            </p>
+
+                            <p class="text-gray-700 leading-relaxed font-medium">
+                                <span class="font-bold text-gray-900 text-lg">Funcionamiento: </span>
+                                {app.funcionamiento.split("\n").map((linea) => (
+                                    <span>
+                                        {linea}
+                                        <br />
+                                    </span>
+                                ))}
+                            </p>
+                        </div>
+                    </section>
+                ))
+            ) : (
+                <p class="text-center text-gray-500 font-medium py-8">No hay datos disponibles</p>
+            )}
+        
+</Layout>
