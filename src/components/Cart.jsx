@@ -131,7 +131,7 @@ export default function Cart() {
         }
 
         try {
-            // // Card.jsx corre en el navegador Sin embargo se usa /api/data para que el fetch se dirija al backend (proxy en dev, ruta real en producción)
+            // Card.jsx corre en el navegador Sin embargo se usa /api/data para que el fetch se dirija al backend (proxy en dev, ruta real en producción)
             const res = await fetch('/api/data', {
                 method: 'POST',
                 headers: {

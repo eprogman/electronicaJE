@@ -1,5 +1,6 @@
 ---
 // Para agregar los productos y Carrito de Compras
+// Salta a catch (error) ya que no se subió el backend, entonces se muestra "No se pudo conectar con el servidor de productos" en la tienda, pero el resto de la página funciona normalmente.
 
 export interface Producto {
     id: number;
@@ -29,7 +30,7 @@ try {
   productos = await res.json();
 
 } catch (error) {
-  console.error("Error al obtener productos:", error);
+  console.error("No se pudo conectar con el servidor de productos");
 }
 
 // Paginación: leer parámetro `page` de la URL (server-side)
