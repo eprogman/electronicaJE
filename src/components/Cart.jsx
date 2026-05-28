@@ -20,7 +20,6 @@ export default function Cart() {
         script.defer = true;
         document.body.appendChild(script);
 
-
         // Definir función global para callback de hCaptcha
         window.onCaptchaSuccess = (token) => {
             console.log("Token generado:", token);
