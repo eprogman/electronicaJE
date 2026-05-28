@@ -14,6 +14,7 @@ const apiUrl = import.meta.env.API_ENDPOINT;
 let productos = [];
 
 try {
+    // Producto.astro normalmente se ejecuta en el servidor (SSR/build), entonces se consume directamente el backend desde Producto.astro
   const res = await fetch(apiUrl, {
     headers: {
       //"x-client-token": token
