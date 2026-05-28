@@ -11,7 +11,7 @@ export default function Cart() {
     const widgetIdRef = useRef(null);
     const captchaRef = useRef(null);
 
-    // Cargar script de hCaptcha
+    // Cargar script de hCaptcha en la página y definir callback global para recibir el token generado por hCaptcha
     useEffect(() => {
 
         const script = document.createElement("script");
@@ -21,13 +21,16 @@ export default function Cart() {
         document.body.appendChild(script);
 
         // Definir función global para callback de hCaptcha
+        // hCaptcha llamará esta función automáticamente cuando el usuario complete el captcha
         window.onCaptchaSuccess = (token) => {
             console.log("Token generado:", token);
+            // Guardar token en estado React para usarlo al enviar el pedido
             setCaptchaToken(token);
         };
 
         return () => {
             // Limpiar funciones globales y script al desmontar
+            // Evita scripts duplicados si el usuario cambia de página.
             document.body.removeChild(script);
             delete window.onCaptchaSuccess;
         };
@@ -83,6 +86,7 @@ export default function Cart() {
         if (existe) {
             setCart(cart.map((p) => p.id === producto.id ? { ...p, cantidad: p.cantidad + 1 } : p));
         } else {
+
             setCart([...cart, { ...producto, cantidad: 1 }]);
         }
         setMensaje("");
@@ -107,7 +111,7 @@ export default function Cart() {
         0
     );
 
-    // Enviar pedido al backend luego de validar HCAPTCHA
+    // se ejecuta al hacer clic en "Enviar pedido" y se envía al backend luego de validar HCAPTCHA
     const enviarPedido = async () => {
         // campos obligatorios
         if (!cliente.nombre || !cliente.email) {
@@ -198,7 +202,8 @@ export default function Cart() {
                         Eliminar
                     </button>
                 </div>
-            ))}
+            ))
+            }
 
             {cart.length > 0 && (
                 <>
@@ -233,7 +238,8 @@ export default function Cart() {
                     <div id="hcaptcha-container"></div>
                     <button onClick={enviarPedido}>Enviar Pedido</button>
                 </>
-            )}
+            )
+            }
 
             {mensaje && <p className="mensaje">{mensaje}</p>}
 
