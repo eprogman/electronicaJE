@@ -116,7 +116,7 @@ import alerta from "../assets/images/alerta.png";
 	</section>
 
 		<!-- SECCION 5 WHATSAPP-->
-		<a href="https://wa.me/51939404393"
+		<a id="whatsapp"
 			class="whatsapp-float"
 			target="_blank"
 			aria-label="Chat WhatsApp">
@@ -166,3 +166,16 @@ import alerta from "../assets/images/alerta.png";
 }
 
 </style>
+
+<script>
+  const numero = "51939404393";
+
+  const whatsapp = document.getElementById("whatsapp");
+
+  if (whatsapp) {
+    whatsapp.setAttribute(
+      "href",
+      `https://wa.me/${numero}`
+    );
+  }
+</script>
